@@ -2,6 +2,7 @@
 # coding: utf-8
 
 # # Chatbot
+"""
 This is an example of an AI-powered chatbot that can help a student choose a master program. 
 It is based on the "gpt-3.5-turbo-1106" model from Open AI and it can use a database, in the form of a .txt file.
 The database contains information about the student.
@@ -11,6 +12,7 @@ The chat history resets after closing the program. You can copy paste the chat h
 
 Do not forget to add the Open AI and Serper API Keys !!!
 Do not forget to install all the necessary modules, like Langchain. 
+"""
 # ## Definitions
 
 # In[1]:
@@ -102,10 +104,10 @@ retriever_tool = create_retriever_tool(
 
 # ### 2. Web searching
 
-# In[9]:
 
 
-#@tool
+
+
 def search(query):
     url = "https://google.serper.dev/search"
 
@@ -125,7 +127,7 @@ def search(query):
     return response.text
 
 
-# In[10]:
+
 
 
 
@@ -137,7 +139,7 @@ search_tool = Tool(
     )
 
 
-# In[11]:
+
 
 
 tools = [retriever_tool, search_tool]
@@ -145,7 +147,7 @@ tools = [retriever_tool, search_tool]
 
 # ## Prompt
 
-# In[12]:
+
 
 
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, HumanMessagePromptTemplate, MessagesPlaceholder
@@ -215,7 +217,6 @@ print(prompt)
 
 # ## Create the agent
 
-# In[13]:
 
 
 from langchain_openai import ChatOpenAI
@@ -236,7 +237,7 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
 # ## Automatic memory
 
-# In[14]:
+
 
 
 from langchain_community.chat_message_histories import ChatMessageHistory
@@ -256,7 +257,6 @@ agent_with_chat_history = RunnableWithMessageHistory(
 
 # ## Testing
 
-# In[15]:
 
 
 """
@@ -266,7 +266,7 @@ the bot cannot handle it.
 """
 
 
-# In[16]:
+
 
 
 """
@@ -279,9 +279,6 @@ agent_with_chat_history.invoke(
 """
 
 
-# In[17]:
-
-
 """
 agent_with_chat_history.invoke(
     {"input": "Elaborate more on the second one!"},
@@ -292,13 +289,9 @@ agent_with_chat_history.invoke(
 """
 
 
-# In[18]:
 
+# message_history
 
-message_history
-
-
-# In[ ]:
 
 
 
